@@ -1,0 +1,13 @@
+target/
+*.class
+.idea/
+.vscode/
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.wsq
+*.tif
+*.tiff
+*.cbor
+*.fpt
