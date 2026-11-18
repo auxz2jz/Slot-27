@@ -1,28 +1,12 @@
-# PrintCompare — Slot-27
+# PrintCompare Web — Slot-27
 
-A local desktop application for comparing two fingerprint images, either full or partial, using SourceAFIS. No identity database, no network uploads, and no print files stored by the application.
+Version 0.2.0 is a standalone browser application. Download index.html and open it in a modern browser. No installation, server, external libraries or internet connection are needed after downloading. For a public website, enable GitHub Pages in repository Settings > Pages > Deploy from a branch > main / (root). Hosting has not been verified.
 
-## Run on Windows, Linux, or macOS
-Install JDK 17+ and Apache Maven 3.9+. Clone this repository, then run:
-```sh
-mvn clean verify
-java -jar target/printcompare-0.1.0.jar
-```
-On Windows you can also use run-windows.cmd after installing Java and Maven.
+Choose two full or partial fingerprint images, enter the true capture DPI if known, and press Compare fingerprints. Green markers show tentative correspondences; orange markers show other detected ridge features. The application searches rotation and translation after local adaptive thresholding, thinning, and detecting candidate ridge endings and branches.
 
-## Workflow
-1. Select the first fingerprint image and the second fingerprint image (PNG, JPEG or BMP).
-2. Enter the true capture resolution in DPI for each. 500 DPI is a common scanner setting, not a universal value. Leave the uncertainty checkbox checked if DPI is assumed.
-3. Crop surrounding material using an image editor before loading, but preserve the original pixel scale. Use the optional inversion checkbox for light ridges on a dark background.
-4. Compare. The program shows the engine score and a cautious interpretation.
-5. Clear to release application references to the images.
+The feature coverage percentage is not an identity probability. The prototype has not been validated with real fingerprint datasets. Unknown DPI, distortion, poor contrast, different scales, false ridge features and non-overlapping fragments can all make the result unreliable. Only compare images you have permission to use. Do not use comparisons for forensic identification or decisions affecting people.
 
-The default reference threshold is 40, from the SourceAFIS documentation. A score is not a percentage or a probability. Above the threshold means only that the algorithm found similarity; a low score does not rule out the same finger, especially with partial, distorted, low-quality, or differently scaled impressions. Non-overlapping fragments may be impossible to compare. The app is experimental, not validated for forensic identification, legal evidence, access control, or decisions affecting people. Use prints only with proper permission. Never upload real prints to this public repository.
+Images are processed in browser memory, not uploaded or retained by the app. This is a public repository; never commit fingerprint images. Browser or operating system histories and caches remain outside application control.
 
-The interface processes images locally in memory. The operating system may still retain file-picker history, thumbnails, swap, or crash information. No guarantee of secure erasure.
-
-Engine documentation: https://sourceafis.machinezoo.com/java
-
-## Development
-- Version 0.1.0: two-image comparison, previews, per-image DPI, polarity control, input validation, asynchronous matching, cautious score reporting.
-- Future: interactive cropping, optional minutiae correspondence visualization, test with consented or licensed datasets, accuracy and partial-print validation.
+## Earlier desktop prototype
+The Java SourceAFIS version 0.1.0 remains available in the source tree. It is separate from the browser algorithm. Build it with JDK 17+ and Maven: mvn clean verify, then java -jar target/printcompare-0.1.0.jar.
