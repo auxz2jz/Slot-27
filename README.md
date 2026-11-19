@@ -1,6 +1,6 @@
 # PrintCompare Web — Slot-27
 
-Version 0.5.0 is a standalone browser application. Download index.html and open it in a modern browser. No installation, server, external libraries or internet connection are needed after downloading. For a public website, enable GitHub Pages in repository Settings > Pages > Deploy from a branch > main / (root). Hosting has not been verified.
+Version 0.6.1 is a standalone browser application. Download index.html and open it in a modern browser. No installation, server, external libraries or internet connection are needed after downloading. For a public website, enable GitHub Pages in repository Settings > Pages > Deploy from a branch > main / (root). Hosting has not been verified.
 
 Choose two full or partial fingerprint images. Tap Crop image, drag around the print using a finger or mouse, and tap Apply crop. Reset crop restores the original. Enter the true capture DPI if known, then press Compare fingerprints.
 
@@ -18,3 +18,6 @@ Each cropped image is independently normalized to a processing canvas. The compa
 
 ## Duplicate-image detection and manual overlay (0.5.0)
 Before feature extraction, the selected images/crops are checked for exact decoded pixel equality, using 256-pixel tiles. Exact equality returns MATCH — IDENTICAL IMAGE even when there are too few ridge features. A conservative normalized-pixel correlation check also looks for near-identical images at different resolutions. Neither establishes identity from independent impressions. The manual overlay provides separate opacity, size, angle, and X/Y controls, touch/mouse dragging, colored ridges, visibility toggles, view zoom, reset and optional automatic alignment. Manual adjustments are visual only. Syntax, synthetic pixel-statistics checks and mock-canvas duplicate checks passed; browser interaction and real fingerprint accuracy are not yet validated.
+
+## V0.6.1 numbered landmark alignment
+Built on the existing GitHub V0.5.0 page; crop, duplicate checks, automatic feature comparison and overlay are preserved. The new third section uses the current crops. Each photo supports 50%–12,800% fitted-view zoom, pinch gestures, wheel, zoom buttons, independent view rotation, drag-to-pan, numbered pin placement/replacement, undo and clearing. Pins are held in image coordinates. A least-squares uniform similarity transform aligns A to B using paired numbers and reports RMS and per-point residual errors. It never stretches axes independently. Two pairs alone cannot validate correspondence. Applying alignment sends precise layer transforms to the existing overlay. Cropping or replacing an image clears its pins. Syntax, mathematical transform and mocked pinch/tap coordinate tests passed; physical browser touchscreen testing and biometric accuracy remain unverified.
