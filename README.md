@@ -1,6 +1,6 @@
 # PrintCompare Web — Slot-27
 
-Version 0.4.0 is a standalone browser application. Download index.html and open it in a modern browser. No installation, server, external libraries or internet connection are needed after downloading. For a public website, enable GitHub Pages in repository Settings > Pages > Deploy from a branch > main / (root). Hosting has not been verified.
+Version 0.5.0 is a standalone browser application. Download index.html and open it in a modern browser. No installation, server, external libraries or internet connection are needed after downloading. For a public website, enable GitHub Pages in repository Settings > Pages > Deploy from a branch > main / (root). Hosting has not been verified.
 
 Choose two full or partial fingerprint images. Tap Crop image, drag around the print using a finger or mouse, and tap Apply crop. Reset crop restores the original. Enter the true capture DPI if known, then press Compare fingerprints.
 
@@ -15,3 +15,6 @@ The Java SourceAFIS version 0.1.0 remains available in the source tree. It is se
 
 ## Automatic size correction
 Each cropped image is independently normalized to a processing canvas. The comparison searches for uniformly scaled ridge feature arrangements rather than forcing both images to the same width or height. The result includes the estimated relative size correction. Disable the checkbox to use only the entered DPI relationship. JavaScript syntax and synthetic feature-point tests for differently scaled, rotated, translated partial arrangements passed; these are not real-print accuracy tests. Larger searches may take longer on phones.
+
+## Duplicate-image detection and manual overlay (0.5.0)
+Before feature extraction, the selected images/crops are checked for exact decoded pixel equality, using 256-pixel tiles. Exact equality returns MATCH — IDENTICAL IMAGE even when there are too few ridge features. A conservative normalized-pixel correlation check also looks for near-identical images at different resolutions. Neither establishes identity from independent impressions. The manual overlay provides separate opacity, size, angle, and X/Y controls, touch/mouse dragging, colored ridges, visibility toggles, view zoom, reset and optional automatic alignment. Manual adjustments are visual only. Syntax, synthetic pixel-statistics checks and mock-canvas duplicate checks passed; browser interaction and real fingerprint accuracy are not yet validated.
